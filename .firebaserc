@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "sm137-sookmyung137"
-  }
+    "default": "spheric-camera-448912-v6"
+  },
+  "targets": {},
+  "etags": {}
 }
