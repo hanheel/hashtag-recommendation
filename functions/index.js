@@ -2,7 +2,7 @@ const functions = require("firebase-functions");
 const axios = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// 미리 지정된 해시태그 리스트
+// 해시태그 리스트
 const predefinedHashtags = [
   "도서관",
   "책대여",
@@ -132,12 +132,14 @@ exports.getHashtags = functions.https.onRequest(async (req, res) => {
 
   try {
     const result = await model.generateContent(prompt);
-    console.log(result);
 
     // const hashtags = response.data.related_hashtags;
     // // 상위 10개 해시태그
     // res.status(200).json({ hashtags: hashtags.slice(0, 10) });
+
+    res.status(200).json({ result });
   } catch {
     console.error("해시태그를 가져오는 도중 에러가 발생했습니다.");
+    res.status(500).send("서버 에러 발생");
   }
 });
